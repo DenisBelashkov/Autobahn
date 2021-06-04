@@ -1,10 +1,7 @@
 package app;
 
 
-import app.component.DumbComponent;
 import app.config.ApplicationConfig;
-import app.service.DumbService;
-import app.service.SampleService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.ComponentScan;

@@ -1,18 +1,26 @@
 package app.repository;
 
 import app.model.Car;
-import app.model.World;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.stereotype.Repository;
 
 public interface CarRepository {
+    Optional<Car> get(Long id);
 
-    void move();
+    List<Car> getAll();
 
-    void stop();
+    void save(Car entity);
 
-    void speedUp();
+    void update(Car entity);
 
-    Car create(World world);
+    void delete(Long id);
 
+    void delete(Car entity);
+
+    public void clear();
 
 
 }

@@ -1,16 +1,35 @@
 package app.model;
 
-import lombok.AllArgsConstructor;
+import com.sun.istack.Nullable;
+
+import javax.persistence.*;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
+@Entity(name="trackcells")
 @NoArgsConstructor
 public class TrackCell {
-    // длина около 1м
-    // есть машина/нет машины
-    private int ID;
-    private boolean isCar;
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @Nullable
+    private TrackCell nextCell;
+
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @Nullable
+    private Car car;
+
+    @Override
+    public String toString() {
+        return "TrackCell{" +
+                "id=" + id +
+                ", nextCellId=" + (nextCell == null ? "none" : nextCell.getId()) +
+                ", carId=" + (car == null ? "none" : car.getId()) +
+                '}';
+    }
 }
