@@ -1,5 +1,19 @@
 package app.mapper;
 
+<<<<<<< HEAD
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+
+import app.DTO.CarDTO;
+import app.DTO.TrackCellDTO;
+import app.DTO.TrackDTO;
+import app.model.Car;
+import app.model.Track;
+import app.model.TrackCell;
+import org.mapstruct.Mapper;
+
+=======
 
 import app.DTO.CarDTO;
 import app.DTO.TrackCellDTO;
@@ -8,12 +22,19 @@ import app.model.TrackCell;
 
 import java.util.ArrayList;
 import java.util.List;
+>>>>>>> origin/master
 
 @Mapper(componentModel = "spring")
 public abstract class MainMapper {
 
+<<<<<<< HEAD
+    public Car carDtoToCar(CarDTO dto) {
+        Car car = new Car();
+
+=======
     /*public Car carDtoToCar(CarDTO dto) {
         Car car = new Car();
+>>>>>>> origin/master
         car.setSpeed(dto.getSpeed());
         car.setId(dto.getId());
 
@@ -24,17 +45,34 @@ public abstract class MainMapper {
         return car;
     }
 
+<<<<<<< HEAD
+    public CarDTO carToCarDTO(Car ent) {
+=======
 *//*    public CarDTO carDtoToCarDTO(Car ent) {
+>>>>>>> origin/master
         CarDTO dto = new CarDTO();
         dto.setId(ent.getId());
         dto.setSpeed(ent.getSpeed());
 
         if (ent.getTrackCell() != null) {
+<<<<<<< HEAD
+            dto.setTrackCell(CellToCellDTOnoReccurencyLazy(ent.getTrackCell()));
+=======
             dto.setTrackCell(cellToCellDTOnoReccurencyLazy(ent.getTrackCell()));
+>>>>>>> origin/master
             dto.getTrackCell().setCar(dto);
         }
 
         return dto;
+<<<<<<< HEAD
+    }
+
+
+    public List<Car> carDtoToCar(List<CarDTO> dto) {
+        List<Car> res = new ArrayList<>();
+        for (var item : dto)
+            res.add(carDtoToCar(item));
+=======
     }*//*
 
     private CarDTO carToCarDTOLazy(Car ent) {
@@ -50,6 +88,7 @@ public abstract class MainMapper {
         List<Car> res = new ArrayList<>();
         for (var item : dto)
             res.add(this.carDtoToCar(item));
+>>>>>>> origin/master
 
         return res;
     }
@@ -62,6 +101,9 @@ public abstract class MainMapper {
         return res;
     }
 
+<<<<<<< HEAD
+    public TrackCellDTO CellToCellDTOnoReccurencyLazy(TrackCell ent) {
+=======
 
     public TrackCell cellDtoToCell(TrackCellDTO dto) {
         if (dto == null) {
@@ -143,6 +185,7 @@ public abstract class MainMapper {
 
 
     *//*public TrackCellDTO blockToBlockDTO(TrackCell ent) {
+>>>>>>> origin/master
         if (ent == null) {
             return null;
         }
@@ -150,6 +193,27 @@ public abstract class MainMapper {
         TrackCellDTO dto = new TrackCellDTO();
         dto.setId(ent.getId());
 
+<<<<<<< HEAD
+        return dto;
+    }
+
+    public TrackDTO TrackToTrackDTO(Track ent) { //only for initialisations
+        TrackDTO trackDto = new TrackDTO();
+        trackDto.setTrackLength(ent.getLength());
+        trackDto.setId(ent.getId());
+
+        ent.getCellList().sort(Comparator.comparingLong(TrackCell::getId));
+
+        var lastCell = cellToCellDTOnoReccurency(ent.getCellList().get(0));
+        for (int i = 1; i < ent.getCellList().size(); i++) {
+            var newCell = cellToCellDTOnoReccurency(ent.getCellList().get(i));
+            // newCell.getLinkNextCell() = lastCell;
+            lastCell = newCell;
+        }
+
+        trackDto.setStartCell(lastCell);
+        return trackDto;
+=======
 
         if (ent.getNextCell() != null) {
             dto.getLinkNextCell()[0] = blockToBlockDTO(ent.getNextCell());
@@ -182,6 +246,7 @@ public abstract class MainMapper {
         }
 
         return dto;
+>>>>>>> origin/master
     }
 
     public TrackCellDTO cellToCellDTOnoReccurency(TrackCell ent) {
@@ -193,6 +258,8 @@ public abstract class MainMapper {
         dto.setId(ent.getId());
 
 
+<<<<<<< HEAD
+=======
         if (ent.getCenterBlock() != null) {
             dto.getCarLinksList()[0] = getTrackCellDTOFromFields(ent.getLeftBlock());
             dto.getCarLinksList()[1] = getTrackCellDTOFromFields(ent.getCenterBlock());
@@ -204,10 +271,53 @@ public abstract class MainMapper {
             dto.getCar().setTrackCell(dto);
         }
 
+>>>>>>> origin/master
         return dto;
     }
 
 
+<<<<<<< HEAD
+
+    public TrackCell cellDtoToCellNoReccurency(TrackCellDTO dto) {
+        if (dto == null){
+            return null;
+        }
+
+        TrackCell trackCell = new TrackCell();
+
+        trackCell.setId(dto.getId());
+
+
+        if (dto.getCar() != null) {
+            Car car = new Car();
+            car.setSpeed(dto.getCar().getSpeed());
+            car.setTrackCell(trackCell);
+            car.setId(dto.getCar().getId());
+            trackCell.setCar(car);
+        }
+
+        return trackCell;
+    }
+
+    public TrackDTO lineToLineDTO(Track ent) { //only for initialisations
+        TrackDTO lineDto = new TrackDTO();
+        lineDto.setTrackLength(ent.getLength());
+        lineDto.setId(ent.getId());
+
+        ent.getCellList().sort(Comparator.comparingLong(TrackCell::getId));
+
+        var lastCell = cellToCellDTOnoReccurency(ent.getCellList().get(0));
+        for (int i = 1; i < ent.getCellList().size(); i++) {
+            var newBlock = cellToCellDTOnoReccurency(ent.getCellList().get(i));
+            lastCell = newBlock;
+        }
+
+        lineDto.setStartCell(lastCell);
+        return lineDto;
+    }
+
+}
+=======
     private TrackCellDTO getTrackCellDTOFromFields(TrackCell block) {
         if (block == null)
             return null;
@@ -310,3 +420,4 @@ public abstract class MainMapper {
 */
 }
 
+>>>>>>> origin/master

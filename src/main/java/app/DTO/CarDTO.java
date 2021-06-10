@@ -14,7 +14,11 @@ public class CarDTO {
    // private DriveModel driveModel;
     private TrackCellDTO trackCell;
 
+<<<<<<< HEAD
+    public CarDTO(Long id,  TrackCellDTO trackCell) {
+=======
     public CarDTO(Long id, DriveModel driveModel, TrackCellDTO trackCell) {
+>>>>>>> origin/master
         this.id = id;
       //  this.driveModel = driveModel;
         this.trackCell = trackCell;

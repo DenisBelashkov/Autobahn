@@ -15,11 +15,22 @@ public interface TrackCellRepository {
 
     void update(TrackCell entity);
 
+<<<<<<< HEAD
+    static void updateSavingNextCells(TrackCell entity) {
+
+    }
+=======
     void updateSavingNextBlocks(TrackCell entity);
+>>>>>>> origin/master
 
     void delete(Long id);
 
     void delete(TrackCell entity);
 
     void clear();
+<<<<<<< HEAD
+
+    void updateSavingNextBlocks(TrackCell entity);
+=======
+>>>>>>> origin/master
 }

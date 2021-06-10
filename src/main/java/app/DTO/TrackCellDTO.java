@@ -13,6 +13,12 @@ public class TrackCellDTO {
     private TrackCellDTO linkNextCell = new TrackCellDTO();
     private CarDTO car;
 
+<<<<<<< HEAD
+    public TrackCellDTO(int lineLength, TrackCellDTO startBlock) {
+    }
+
+=======
+>>>>>>> origin/master
     @Override
     public String toString() {
         return "TrackCellDTO{" +
